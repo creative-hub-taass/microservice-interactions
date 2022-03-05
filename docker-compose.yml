@@ -1,0 +1,35 @@
+version: '3'
+services:
+  dbpostgresql:
+    image: "postgres"
+    environment:
+      POSTGRES_DB: creative-hub-interactions
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      restart: unless-stopped
+    networks:
+      - interactions-microservice-network
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:80"
+    networks:
+      - interactions-microservice-network
+  interactions-microservice:
+    build: .
+    image: interactions-microservice:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbpostgresql:5432/creative-hub-interactions
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - dbpostgresql
+      - maildev
+    networks:
+      - interactions-microservice-network
+networks:
+  interactions-microservice-network:
+    driver: bridge
+
