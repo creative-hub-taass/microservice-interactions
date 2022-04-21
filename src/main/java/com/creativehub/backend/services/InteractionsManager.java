@@ -4,11 +4,19 @@ import com.creativehub.backend.models.Comment;
 import com.creativehub.backend.models.Like;
 import com.creativehub.backend.util.InteractionException;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface InteractionsManager {
-    public void like(Like like) throws InteractionException;
-    public void deleteLikeById(UUID likeId) throws InteractionException;
-    public void comment(Comment comment) throws InterruptedException;
-    public void deleteCommentById(UUID commentId) throws InteractionException;
+    // LIKES
+    void like(Like like) throws InteractionException;
+    void deleteLikeById(UUID likeId) throws InteractionException;
+    List<Like> likesOfUser(UUID userId);
+    List<Like> likesOfPublication(UUID userId);
+    boolean userLikedPublication(UUID userId, UUID publicationId);
+    // COMMENTS
+    void comment(Comment comment) throws InterruptedException;
+    void deleteCommentById(UUID commentId) throws InteractionException;
+    List<Comment> commentsOfPublication(UUID publicationId);
+    boolean userCommentedPublication(UUID userId, UUID publicationId);
 }

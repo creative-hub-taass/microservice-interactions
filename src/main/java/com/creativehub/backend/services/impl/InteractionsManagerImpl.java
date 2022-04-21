@@ -9,6 +9,7 @@ import com.creativehub.backend.util.InteractionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -36,6 +37,31 @@ public class InteractionsManagerImpl implements InteractionsManager {
     public void deleteLikeById(UUID likeId) throws InteractionException {
         if (likeRepository.existsById(likeId)) likeRepository.deleteById(likeId);
         else throw new InteractionException("NOT_FOUND");
+    }
+
+    @Override
+    public List<Like> likesOfUser(UUID userId) {
+        return likeRepository.likesByUserId(userId);
+    }
+
+    @Override
+    public List<Like> likesOfPublication(UUID userId) {
+        return likeRepository.likesByPublicationId(userId);
+    }
+
+    @Override
+    public boolean userLikedPublication(UUID userId, UUID publicationId) {
+        return false;
+    }
+
+    @Override
+    public List<Comment> commentsOfPublication(UUID publicationId) {
+        return commentRepository.commentsByPublicationId(publicationId);
+    }
+
+    @Override
+    public boolean userCommentedPublication(UUID userId, UUID publicationId) {
+        return false;
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/collabs")
+@RequestMapping("/api/v1/interactions/collabs")
 @RequiredArgsConstructor
 public class CollaborationRequestController {
     private final CollaborationRequestManagerImp collaborationRequestManager;
@@ -31,4 +31,8 @@ public class CollaborationRequestController {
     public List<CollaborationRequestDto> getAllOpenRequestBySenderId(@PathVariable UUID id) {
         return collaborationRequestManager.getAllOpenRequestBySenderId(id);
     }
+
+    //TODO: aggiungere aperte di broadcast
+    //TODO: anche per receiver ID
+
 }

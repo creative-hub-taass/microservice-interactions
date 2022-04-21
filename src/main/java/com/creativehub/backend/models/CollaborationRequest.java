@@ -37,7 +37,7 @@ public class CollaborationRequest {
 	private Timestamp timestamp;
 
 	@Column(name = "contact")
-	private String contact; //FIXME: contatto come?
+	private String contact;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "category")

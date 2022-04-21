@@ -10,11 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
+
+//FIXME: path unificato per microservizio
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/auth/interactions")
+@RequestMapping("/api/v1/interactions")
 @RequiredArgsConstructor
 public class InteractionsController {
     private final InteractionsManagerImpl interactionsManager;
@@ -57,4 +60,39 @@ public class InteractionsController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
+
+    @GetMapping("likes/{id}")
+    public List<Like> likesOfUser(@PathVariable UUID id) {
+        return interactionsManager.likesOfUser(id);
+    }
+
+    @GetMapping("likes/count/{id}")
+    public int likeCountOfPublication(@PathVariable UUID id) {
+        return interactionsManager.likesOfPublication(id).size();
+    }
+
+    @GetMapping("comments/{id}")
+    public List<Comment> commentsOfPublication(@PathVariable UUID id) {
+        return interactionsManager.commentsOfPublication(id);
+    }
+
+    @GetMapping("comments/count/{id}")
+    public int commentsCountOfPublication(@PathVariable UUID id) {
+        return interactionsManager.commentsOfPublication(id).size();
+    }
+
+    //FIXME: magari mettere come parametri
+    @GetMapping("userliked/{userId}/{publicationId}")
+    public boolean userLikedPublication(@PathVariable UUID userId, @PathVariable UUID publicationId) {
+        return interactionsManager.likeExists(userId, publicationId);
+    }
+
+    //FIXME: magari mettere come parametri
+    @GetMapping("usercommented/{userId}/{publicationId}")
+    public boolean userCommentedPublication(@PathVariable UUID userId, @PathVariable UUID publicationId) {
+        return interactionsManager.commentExists(userId, publicationId);
+    }
+
+    //TODO: aggiungere kubernetes
+    //TODO: aggiungere RabbitMQ?
 }
