@@ -34,4 +34,9 @@ public interface CollaborationRequestRepository extends JpaRepository<Collaborat
 
     @Query("SELECT r FROM CollaborationRequest r WHERE r.senderId = ?1 AND r.receiverId = ?1 AND r.status='OPEN'")
     List<CollaborationRequest> findAllOpenBroadcastRequestsByUserId(UUID id);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM CollaborationRequest r WHERE (r.senderId = ?1 OR r.receiverId = ?1) AND r.status = 'OPEN'")
+    void deleteByUserId(UUID id);
 }

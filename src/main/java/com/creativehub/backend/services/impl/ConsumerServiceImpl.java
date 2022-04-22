@@ -10,13 +10,12 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ConsumerServiceImpl implements ConsumerService {
-
-    //repository
+    private static CollaborationRequestManagerImp collaborationRequestManager;
 
     @Override
     @RabbitListener(queues = "${spring.rabbitmq.queue}")
     public void receivedMessage(UUID id) {
-        //TODO
         //eliminare le richieste collaborazione attive verso e dall'utente con id passato per parametro
+        collaborationRequestManager.deleteByUserId(id);
     }
 }

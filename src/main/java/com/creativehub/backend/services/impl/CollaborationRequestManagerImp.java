@@ -20,6 +20,11 @@ public class CollaborationRequestManagerImp implements CollaborationRequestManag
     private final CollaborationRequestRepository collaborationRequestRepository;
 
     @Override
+    public void deleteByUserId(UUID userId) {
+        collaborationRequestRepository.deleteByUserId(userId);
+    }
+
+    @Override
     public CollaborationRequestDto addCollaboration(CollaborationRequest request) {
         return collaborationRequestMapper.collaborationRequestToCollaborationRequestDto(collaborationRequestRepository.save(request));
     }
@@ -34,14 +39,17 @@ public class CollaborationRequestManagerImp implements CollaborationRequestManag
         return collaborationRequestRepository.findAllOpenRequestsBySenderId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
     }
 
+    @Override
     public List<CollaborationRequestDto> getAllOpenRequestsByReceiverId(UUID id) {
         return collaborationRequestRepository.findAllOpenRequestsByReceiverId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
     }
 
+    @Override
     public List<CollaborationRequestDto> getAllOpenBroadcastRequests() {
         return collaborationRequestRepository.findAllOpenBroadcastRequests().stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
     }
 
+    @Override
     public List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(UUID id) {
         return collaborationRequestRepository.findAllOpenBroadcastRequestsByUserId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
     }
