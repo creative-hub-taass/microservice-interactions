@@ -13,8 +13,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.UUID;
 
-//FIXME: path unificato per microservizio
-
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/interactions")
