@@ -27,7 +27,12 @@ public interface CollaborationRequestRepository extends JpaRepository<Collaborat
     @Query("SELECT r FROM CollaborationRequest r WHERE r.senderId =?1 AND r.status='OPEN'")
     List<CollaborationRequest> findAllOpenRequestsBySenderId(UUID id);
 
-    // TODO: più artisti possono partecipare?
+    @Query("SELECT r FROM CollaborationRequest r WHERE r.receiverId =?1 AND r.status='OPEN'")
+    List<CollaborationRequest> findAllOpenRequestsByReceiverId(UUID id);
+
     @Query("SELECT r FROM CollaborationRequest r WHERE r.senderId = r.receiverId AND r.status='OPEN'")
     List<CollaborationRequest> findAllOpenBroadcastRequests();
+
+    @Query("SELECT r FROM CollaborationRequest r WHERE r.senderId = ?1 AND r.receiverId = ?1 AND r.status='OPEN'")
+    List<CollaborationRequest> findAllOpenBroadcastRequestsByUserId(UUID id);
 }

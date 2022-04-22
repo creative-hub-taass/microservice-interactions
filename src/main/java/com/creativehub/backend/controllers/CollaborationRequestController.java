@@ -27,12 +27,23 @@ public class CollaborationRequestController {
         collaborationRequestManager.updateCollaborationStatus(id, CollaborationRequestStatus.CLOSED);
     }
 
-    @GetMapping("requests/{id}")
-    public List<CollaborationRequestDto> getAllOpenRequestBySenderId(@PathVariable UUID id) {
-        return collaborationRequestManager.getAllOpenRequestBySenderId(id);
+    @GetMapping("requests/sender/{id}")
+    public List<CollaborationRequestDto> getAllOpenRequestsBySenderId(@PathVariable UUID id) {
+        return collaborationRequestManager.getAllOpenRequestsBySenderId(id);
     }
 
-    //TODO: aggiungere aperte di broadcast
-    //TODO: anche per receiver ID
+    @GetMapping("requests/receiver/{id}")
+    public List<CollaborationRequestDto> getAllOpenRequestsByReceiverId(@PathVariable UUID id) {
+        return collaborationRequestManager.getAllOpenRequestsByReceiverId(id);
+    }
 
+    @GetMapping("requests/broadcast")
+    public List<CollaborationRequestDto> getAllOpenBroadcastRequests() {
+        return collaborationRequestManager.getAllOpenBroadcastRequests();
+    }
+
+    @GetMapping("requests/broadcast/{id}")
+    public List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(@PathVariable UUID id) {
+        return collaborationRequestManager.getAllOpenBroadcastRequestsByUserId(id);
+    }
 }

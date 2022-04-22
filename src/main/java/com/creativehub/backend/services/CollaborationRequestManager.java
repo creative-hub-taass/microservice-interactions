@@ -10,7 +10,5 @@ import java.util.UUID;
 public interface CollaborationRequestManager {
     CollaborationRequestDto addCollaboration(CollaborationRequest request);
     void updateCollaborationStatus(UUID id, CollaborationRequestStatus status);
-    List<CollaborationRequestDto> getAllOpenRequestBySenderId(UUID id);
-
-    // TODO: aggiungere collab broadcast
+    List<CollaborationRequestDto> getAllOpenRequestsBySenderId(UUID id);
 }

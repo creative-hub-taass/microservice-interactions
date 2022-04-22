@@ -29,7 +29,21 @@ public class CollaborationRequestManagerImp implements CollaborationRequestManag
         collaborationRequestRepository.updateRequestStatus(id, status);
     }
 
-    public List<CollaborationRequestDto> getAllOpenRequestBySenderId(UUID id) {
+    @Override
+    public List<CollaborationRequestDto> getAllOpenRequestsBySenderId(UUID id) {
         return collaborationRequestRepository.findAllOpenRequestsBySenderId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
     }
+
+    public List<CollaborationRequestDto> getAllOpenRequestsByReceiverId(UUID id) {
+        return collaborationRequestRepository.findAllOpenRequestsByReceiverId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+    }
+
+    public List<CollaborationRequestDto> getAllOpenBroadcastRequests() {
+        return collaborationRequestRepository.findAllOpenBroadcastRequests().stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+    }
+
+    public List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(UUID id) {
+        return collaborationRequestRepository.findAllOpenBroadcastRequestsByUserId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+    }
+
 }
