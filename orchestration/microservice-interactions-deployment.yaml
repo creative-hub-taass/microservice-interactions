@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: microservice-interactions
+  name: microservice-interactions
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: microservice-interactions
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        io.kompose.service: microservice-interactions
+    spec:
+      containers:
+        - env:
+            - name: DB_HOST
+              value: db-interactions
+            - name: DB_NAME
+              value: creative-hub-interactions
+            - name: DB_PASSWORD
+              value: postgres
+            - name: DB_USERNAME
+              value: postgres
+          image: ghcr.io/creative-hub-taass/microservice-interactions:latest
+          name: microservice-interactions
+          ports:
+            - containerPort: 8080
+          resources: { }
+      restartPolicy: Always
