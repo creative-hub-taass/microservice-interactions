@@ -15,7 +15,6 @@ import java.util.UUID;
 @Transactional(readOnly = true)
 public interface CollaborationRequestRepository extends JpaRepository<CollaborationRequest, UUID> {
 
-    //TODO: aggiungere query per ottenere tutte le richieste aperte
     @Query("SELECT r FROM CollaborationRequest r WHERE r.receiverId = ?1 OR r.senderId = ?1 AND r.status = 'OPEN'")
     List<CollaborationRequest> getAllOpenRequests(UUID userId);
 
