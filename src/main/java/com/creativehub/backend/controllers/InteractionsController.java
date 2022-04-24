@@ -90,7 +90,4 @@ public class InteractionsController {
     public boolean userCommentedPublication(@PathVariable UUID userId, @PathVariable UUID publicationId) {
         return interactionsManager.commentExists(userId, publicationId);
     }
-
-    //TODO: aggiungere kubernetes
-    //TODO: aggiungere RabbitMQ?
 }
