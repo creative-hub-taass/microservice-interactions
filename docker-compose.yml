@@ -8,12 +8,6 @@ services:
       POSTGRES_DB: creative-hub-interactions
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
   microservice-interactions:
     build: .
     image: creative-hub/microservice-interactions:latest
@@ -23,7 +17,9 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-interactions:5432/creative-hub-interactions
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     depends_on:
       - db-interactions
-      - rabbitmq
