@@ -13,10 +13,8 @@ public interface InteractionsManager {
     void deleteLikeById(UUID likeId) throws InteractionException;
     List<Like> likesOfUser(UUID userId);
     List<Like> likesOfPublication(UUID userId);
-    boolean userLikedPublication(UUID userId, UUID publicationId);
     // COMMENTS
     void comment(Comment comment) throws InterruptedException;
     void deleteCommentById(UUID commentId) throws InteractionException;
     List<Comment> commentsOfPublication(UUID publicationId);
-    boolean userCommentedPublication(UUID userId, UUID publicationId);
 }

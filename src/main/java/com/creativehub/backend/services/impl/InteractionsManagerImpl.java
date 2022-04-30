@@ -9,7 +9,9 @@ import com.creativehub.backend.util.InteractionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -45,23 +47,25 @@ public class InteractionsManagerImpl implements InteractionsManager {
     }
 
     @Override
-    public List<Like> likesOfPublication(UUID userId) {
-        return likeRepository.likesByPublicationId(userId);
+    public List<Like> likesOfPublication(UUID publicationId) {
+        return likeRepository.likesByPublicationId(publicationId);
     }
 
-    @Override
-    public boolean userLikedPublication(UUID userId, UUID publicationId) {
-        return false;
+    public Map<String, Object>  likesCountsByPublications(List<UUID> publicationsIds) {
+        Map<String, Object> json = new HashMap<>();
+        for (UUID id : publicationsIds) {json.put(id.toString(), likesOfPublication(id).size());}
+        return json;
+    }
+
+    public  Map<String, Object> commentsByPublications(List<UUID> publicationsIds) {
+        Map<String, Object> json = new HashMap<>();
+        for (UUID id : publicationsIds) {json.put(id.toString(), commentsOfPublication(id));}
+        return json;
     }
 
     @Override
     public List<Comment> commentsOfPublication(UUID publicationId) {
         return commentRepository.commentsByPublicationId(publicationId);
-    }
-
-    @Override
-    public boolean userCommentedPublication(UUID userId, UUID publicationId) {
-        return false;
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @CrossOrigin
@@ -89,5 +90,15 @@ public class InteractionsController {
     @GetMapping("usercommented/{userId}/{publicationId}")
     public boolean userCommentedPublication(@PathVariable UUID userId, @PathVariable UUID publicationId) {
         return interactionsManager.commentExists(userId, publicationId);
+    }
+
+    @PostMapping("likes/ids")
+    public Map<String, Object> likesCountsByIds(@RequestBody List<UUID> idsList) {
+        return interactionsManager.likesCountsByPublications(idsList);
+    }
+
+    @PostMapping("comments/ids")
+    public  Map<String, Object> commentsByIds(@RequestBody List<UUID> idsList) {
+        return interactionsManager.commentsByPublications(idsList);
     }
 }
