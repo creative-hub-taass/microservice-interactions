@@ -92,12 +92,12 @@ public class InteractionsController {
         return interactionsManager.commentExists(userId, publicationId);
     }
 
-    @PostMapping("/likes/-/ids")
+    @PostMapping("/-/likes/ids")
     public Map<String, Object> likesCountsByIds(@RequestBody List<UUID> idsList) {
         return interactionsManager.likesCountsByPublications(idsList);
     }
 
-    @PostMapping("/comments/-/ids")
+    @PostMapping("/-/comments/ids")
     public  Map<String, Object> commentsByIds(@RequestBody List<UUID> idsList) {
         return interactionsManager.commentsByPublications(idsList);
     }
