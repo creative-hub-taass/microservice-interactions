@@ -52,7 +52,7 @@ public class InteractionsController {
 
     @DeleteMapping("/like/{id}")
     public ResponseEntity<?> deleteLike(@PathVariable UUID id) {
-        try {
+        try { 
             interactionsManager.deleteLikeById(id);
             return ResponseEntity.ok("OK");
         } catch (InteractionException e) {
@@ -60,34 +60,34 @@ public class InteractionsController {
         }
     }
 
-    @GetMapping("likes/{id}")
+    @GetMapping("/likes/{id}")
     public List<Like> likesOfUser(@PathVariable UUID id) {
         return interactionsManager.likesOfUser(id);
     }
 
-    @GetMapping("likes/count/{id}")
+    @GetMapping("/-/likes/count/{id}")
     public int likeCountOfPublication(@PathVariable UUID id) {
         return interactionsManager.likesOfPublication(id).size();
     }
 
-    @GetMapping("comments/{id}")
+    @GetMapping("/-/comments/{id}")
     public List<Comment> commentsOfPublication(@PathVariable UUID id) {
         return interactionsManager.commentsOfPublication(id);
     }
 
-    @GetMapping("comments/count/{id}")
+    @GetMapping("/comments/count/{id}")
     public int commentsCountOfPublication(@PathVariable UUID id) {
         return interactionsManager.commentsOfPublication(id).size();
     }
 
     //FIXME: magari mettere come parametri
-    @GetMapping("userliked/{userId}/{publicationId}")
+    @GetMapping("/userliked/{userId}/{publicationId}")
     public boolean userLikedPublication(@PathVariable UUID userId, @PathVariable UUID publicationId) {
         return interactionsManager.likeExists(userId, publicationId);
     }
 
     //FIXME: magari mettere come parametri
-    @GetMapping("usercommented/{userId}/{publicationId}")
+    @GetMapping("/usercommented/{userId}/{publicationId}")
     public boolean userCommentedPublication(@PathVariable UUID userId, @PathVariable UUID publicationId) {
         return interactionsManager.commentExists(userId, publicationId);
     }
