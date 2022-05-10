@@ -13,10 +13,10 @@ import java.util.UUID;
 @Transactional(readOnly = true)
 public interface CommentRepository extends JpaRepository<Comment, UUID> {
 
-    @Query("SELECT c FROM Comment c WHERE c.userId = ?1 AND c.publicationId = ?2")
-    List<Comment> commentByUserPublicationIds(UUID userId, UUID publicationId);
+	@Query("SELECT c FROM Comment c WHERE c.userId = ?1 AND c.publicationId = ?2")
+	List<Comment> commentByUserPublicationIds(UUID userId, UUID publicationId);
 
-    @Query("SELECT c from Comment c WHERE c.publicationId = ?1")
-    List<Comment> commentsByPublicationId(UUID id);
+	@Query("SELECT c from Comment c WHERE c.publicationId = ?1")
+	List<Comment> commentsByPublicationId(UUID id);
 
 }

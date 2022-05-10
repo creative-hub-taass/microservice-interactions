@@ -13,17 +13,17 @@ import java.util.UUID;
 @Entity
 @Table(name = "comments")
 public class Comment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private UUID id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	private UUID id;
 
-    @Column(name = "user_id", nullable = false)
-    private UUID userId;
+	@Column(name = "user_id", nullable = false)
+	private UUID userId;
 
-    @Column(name = "pubblication_id", nullable = false)
-    private UUID publicationId;
+	@Column(name = "pubblication_id", nullable = false)
+	private UUID publicationId;
 
-    @Column(name = "message", nullable = false)
-    private String message;
+	@Column(name = "message", nullable = false)
+	private String message;
 }

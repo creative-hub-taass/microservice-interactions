@@ -1,20 +1,34 @@
 package com.creativehub.backend.services;
 
-import com.creativehub.backend.models.Comment;
-import com.creativehub.backend.models.Like;
-import com.creativehub.backend.util.InteractionException;
+import com.creativehub.backend.services.dto.CommentDto;
+import com.creativehub.backend.services.dto.LikeDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public interface InteractionsManager {
-    // LIKES
-    void like(Like like) throws InteractionException;
-    void deleteLikeById(UUID likeId) throws InteractionException;
-    List<Like> likesOfUser(UUID userId);
-    List<Like> likesOfPublication(UUID userId);
-    // COMMENTS
-    void comment(Comment comment) throws InterruptedException;
-    void deleteCommentById(UUID commentId) throws InteractionException;
-    List<Comment> commentsOfPublication(UUID publicationId);
+	// LIKES
+	LikeDto like(LikeDto like);
+
+	void deleteLikeById(UUID likeId);
+
+	List<LikeDto> likesOfUser(UUID userId);
+
+	List<LikeDto> likesOfPublication(UUID userId);
+
+	// COMMENTS
+	CommentDto comment(CommentDto comment);
+
+	void deleteCommentById(UUID commentId);
+
+	List<CommentDto> commentsOfPublication(UUID publicationId);
+
+	boolean likeExists(UUID userId, UUID publicationId);
+
+	boolean commentExists(UUID userId, UUID publicationId);
+
+	Map<UUID, Integer> likesCountsByPublications(List<UUID> idsList);
+
+	Map<UUID, List<CommentDto>> commentsByPublications(List<UUID> idsList);
 }
