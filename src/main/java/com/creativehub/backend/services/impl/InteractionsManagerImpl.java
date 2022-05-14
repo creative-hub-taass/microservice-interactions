@@ -45,6 +45,11 @@ public class InteractionsManagerImpl implements InteractionsManager {
 	}
 
 	@Override
+	public void deleteLikeBy(UUID userId, UUID publicationId) {
+		likeRepository.deleteAll(likeRepository.likeByUserPublicationIds(userId, publicationId));
+	}
+
+	@Override
 	public void deleteLikeById(UUID likeId) {
 		likeRepository.findById(likeId).ifPresent(likeRepository::delete);
 	}

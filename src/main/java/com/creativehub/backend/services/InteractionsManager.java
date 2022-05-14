@@ -11,6 +11,8 @@ public interface InteractionsManager {
 	// LIKES
 	LikeDto like(LikeDto like);
 
+	void deleteLikeBy(UUID userId, UUID publicationId);
+
 	void deleteLikeById(UUID likeId);
 
 	List<LikeDto> likesOfUser(UUID userId);

@@ -33,6 +33,11 @@ public class InteractionsController {
 		return ResponseEntity.ok(interactionsManager.like(like));
 	}
 
+	@DeleteMapping("/like")
+	public void deleteLike(@RequestBody LikeDto like) {
+		interactionsManager.deleteLikeBy(like.getUserId(), like.getPublicationId());
+	}
+
 	@DeleteMapping("/like/{id}")
 	public void deleteLike(@PathVariable UUID id) {
 		interactionsManager.deleteLikeById(id);
