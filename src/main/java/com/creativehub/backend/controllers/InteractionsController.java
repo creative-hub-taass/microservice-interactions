@@ -33,6 +33,14 @@ public class InteractionsController {
 		return ResponseEntity.ok(interactionsManager.like(like));
 	}
 
+	/**
+	 * For testing purposes only
+	 */
+	@PostMapping("/likes")
+	public void like(@RequestBody List<LikeDto> likes) {
+		interactionsManager.saveLikes(likes);
+	}
+
 	@DeleteMapping("/like")
 	public void deleteLike(@RequestBody LikeDto like) {
 		interactionsManager.deleteLikeBy(like.getUserId(), like.getPublicationId());

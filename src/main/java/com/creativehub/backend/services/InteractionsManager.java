@@ -33,4 +33,6 @@ public interface InteractionsManager {
 	Map<UUID, Integer> likesCountsByPublications(List<UUID> idsList);
 
 	Map<UUID, List<CommentDto>> commentsByPublications(List<UUID> idsList);
+
+	void saveLikes(List<LikeDto> likes);
 }
