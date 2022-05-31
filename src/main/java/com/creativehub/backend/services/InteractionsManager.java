@@ -35,4 +35,6 @@ public interface InteractionsManager {
 	Map<UUID, List<CommentDto>> commentsByPublications(List<UUID> idsList);
 
 	void saveLikes(List<LikeDto> likes);
+
+	void saveComments(List<CommentDto> comments);
 }

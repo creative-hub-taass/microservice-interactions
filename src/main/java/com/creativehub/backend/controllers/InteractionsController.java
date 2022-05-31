@@ -23,6 +23,14 @@ public class InteractionsController {
 		return ResponseEntity.ok(interactionsManager.comment(comment));
 	}
 
+	/**
+	 * For testing purposes only
+	 */
+	@PostMapping("/comments")
+	public void comments(@RequestBody List<CommentDto> comments) {
+		interactionsManager.saveComments(comments);
+	}
+
 	@DeleteMapping("/comment/{id}")
 	public void deleteComment(@PathVariable UUID id) {
 		interactionsManager.deleteCommentById(id);
@@ -37,7 +45,7 @@ public class InteractionsController {
 	 * For testing purposes only
 	 */
 	@PostMapping("/likes")
-	public void like(@RequestBody List<LikeDto> likes) {
+	public void likes(@RequestBody List<LikeDto> likes) {
 		interactionsManager.saveLikes(likes);
 	}
 

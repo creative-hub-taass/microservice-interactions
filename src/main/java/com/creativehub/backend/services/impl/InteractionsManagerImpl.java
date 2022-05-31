@@ -80,6 +80,11 @@ public class InteractionsManagerImpl implements InteractionsManager {
 	}
 
 	@Override
+	public void saveComments(List<CommentDto> comments) {
+		commentRepository.saveAll(comments.stream().map(commentMapper::commentDtoToComment).collect(Collectors.toList()));
+	}
+
+	@Override
 	public List<CommentDto> commentsOfPublication(UUID publicationId) {
 		return commentRepository.commentsByPublicationId(publicationId).stream().map(commentMapper::commentToCommentDto).collect(Collectors.toList());
 	}
