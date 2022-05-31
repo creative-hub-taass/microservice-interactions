@@ -25,7 +25,7 @@ public class CollaborationRequestManagerImpl implements CollaborationRequestMana
 	}
 
 	@Override
-	public CollaborationRequestDto addCollaboration(CollaborationRequest request) {
+	public CollaborationRequestDto saveCollaborationRequest(CollaborationRequest request) {
 		return collaborationRequestMapper.collaborationRequestToCollaborationRequestDto(collaborationRequestRepository.save(request));
 	}
 

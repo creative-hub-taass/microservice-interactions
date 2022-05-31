@@ -19,7 +19,7 @@ public class CollaborationRequestController {
 
 	@PostMapping("/request")
 	public CollaborationRequestDto addCollaborationRequest(@RequestBody CollaborationRequest collaborationRequest) {
-		return collaborationRequestManager.addCollaboration(collaborationRequest);
+		return collaborationRequestManager.saveCollaborationRequest(collaborationRequest);
 	}
 
 	@GetMapping("/request/close/{id}")

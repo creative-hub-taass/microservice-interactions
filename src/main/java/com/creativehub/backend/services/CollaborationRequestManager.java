@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CollaborationRequestManager {
-	CollaborationRequestDto addCollaboration(CollaborationRequest request);
+	CollaborationRequestDto saveCollaborationRequest(CollaborationRequest request);
 
 	void updateCollaborationStatus(UUID id, CollaborationRequestStatus status);
 
@@ -21,5 +21,4 @@ public interface CollaborationRequestManager {
 	List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(UUID id);
 
 	void deleteByUserId(UUID userId);
-
 }
