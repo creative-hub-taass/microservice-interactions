@@ -17,7 +17,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 	@RabbitListener(queues = "${spring.rabbitmq.queue}")
 	public void receivedMessage(UUID id) {
 		//eliminare le richieste collaborazione attive verso e dall'utente con id passato per parametro
-		System.out.println("E' arrivato il messaggio"+ id);
+		System.out.println("E' arrivato il messaggio "+ id);
 		collaborationRequestManager.deleteByUserId(id);
 	}
 }
