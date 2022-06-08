@@ -16,7 +16,7 @@ public class RabbitMQConfig {
 	private String queue;
 
 	@Value("${fanout.name}")
-	private String exchange;
+	private String fanoutName;
 
 	@Value("${spring.rabbitmq.username}")
 	private String username;
@@ -34,7 +34,7 @@ public class RabbitMQConfig {
 
 	@Bean
 	FanoutExchange myExchange() {
-		return ExchangeBuilder.directExchange(exchange).durable(true).build();
+		return new FanoutExchange(fanoutName);
 	}
 
 	@Bean
