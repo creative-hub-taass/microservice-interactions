@@ -27,23 +27,43 @@ public class CollaborationRequestController {
 		collaborationRequestManager.updateCollaborationStatus(id, CollaborationRequestStatus.CLOSED);
 	}
 
-	@GetMapping("requests/sender/{id}")
+	@GetMapping("requests/sender/open/{id}")
 	public List<CollaborationRequestDto> getAllOpenRequestsBySenderId(@PathVariable UUID id) {
 		return collaborationRequestManager.getAllOpenRequestsBySenderId(id);
 	}
 
-	@GetMapping("requests/receiver/{id}")
+	@GetMapping("requests/sender/closed/{id}")
+	public List<CollaborationRequestDto> getAllClosedRequestsBySenderId(@PathVariable UUID id) {
+		return collaborationRequestManager.getAllClosedRequestsBySenderId(id);
+	}
+
+	@GetMapping("requests/receiver/open/{id}")
 	public List<CollaborationRequestDto> getAllOpenRequestsByReceiverId(@PathVariable UUID id) {
 		return collaborationRequestManager.getAllOpenRequestsByReceiverId(id);
 	}
 
-	@GetMapping("requests/broadcast")
+	@GetMapping("requests/receiver/closed/{id}")
+	public List<CollaborationRequestDto> getAllClosedRequestsByReceiverId(@PathVariable UUID id) {
+		return collaborationRequestManager.getAllClosedRequestsByReceiverId(id);
+	}
+
+	@GetMapping("requests/broadcast/open")
 	public List<CollaborationRequestDto> getAllOpenBroadcastRequests() {
 		return collaborationRequestManager.getAllOpenBroadcastRequests();
 	}
 
-	@GetMapping("requests/broadcast/{id}")
+	@GetMapping("requests/broadcast/closed")
+	public List<CollaborationRequestDto> getAllClosedBroadcastRequests() {
+		return collaborationRequestManager.getAllClosedBroadcastRequests();
+	}
+
+	@GetMapping("requests/broadcast/open/{id}")
 	public List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(@PathVariable UUID id) {
 		return collaborationRequestManager.getAllOpenBroadcastRequestsByUserId(id);
+	}
+
+	@GetMapping("requests/broadcast/closed/{id}")
+	public List<CollaborationRequestDto> getAllClosedBroadcastRequestsByUserId(@PathVariable UUID id) {
+		return collaborationRequestManager.getAllClosedBroadcastRequestsByUserId(id);
 	}
 }

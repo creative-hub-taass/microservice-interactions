@@ -40,8 +40,18 @@ public class CollaborationRequestManagerImpl implements CollaborationRequestMana
 	}
 
 	@Override
+	public List<CollaborationRequestDto> getAllClosedRequestsBySenderId(UUID id) {
+		return collaborationRequestRepository.findAllClosedRequestsBySenderId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+	}
+
+	@Override
 	public List<CollaborationRequestDto> getAllOpenRequestsByReceiverId(UUID id) {
 		return collaborationRequestRepository.findAllOpenRequestsByReceiverId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CollaborationRequestDto> getAllClosedRequestsByReceiverId(UUID id) {
+		return collaborationRequestRepository.findAllClosedRequestsByReceiverId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
 	}
 
 	@Override
@@ -50,8 +60,18 @@ public class CollaborationRequestManagerImpl implements CollaborationRequestMana
 	}
 
 	@Override
+	public List<CollaborationRequestDto> getAllClosedBroadcastRequests() {
+		return collaborationRequestRepository.findAllClosedBroadcastRequests().stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+	}
+
+	@Override
 	public List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(UUID id) {
 		return collaborationRequestRepository.findAllOpenBroadcastRequestsByUserId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CollaborationRequestDto> getAllClosedBroadcastRequestsByUserId(UUID id) {
+		return collaborationRequestRepository.findAllClosedBroadcastRequestsByUserId(id).stream().map(collaborationRequestMapper::collaborationRequestToCollaborationRequestDto).collect(Collectors.toList());
 	}
 
 }

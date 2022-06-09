@@ -13,12 +13,16 @@ public interface CollaborationRequestManager {
 	void updateCollaborationStatus(UUID id, CollaborationRequestStatus status);
 
 	List<CollaborationRequestDto> getAllOpenRequestsBySenderId(UUID id);
+	List<CollaborationRequestDto> getAllClosedRequestsBySenderId(UUID id);
 
 	List<CollaborationRequestDto> getAllOpenRequestsByReceiverId(UUID id);
+	List<CollaborationRequestDto> getAllClosedRequestsByReceiverId(UUID id);
 
 	List<CollaborationRequestDto> getAllOpenBroadcastRequests();
+	List<CollaborationRequestDto> getAllClosedBroadcastRequests();
 
 	List<CollaborationRequestDto> getAllOpenBroadcastRequestsByUserId(UUID id);
+	List<CollaborationRequestDto> getAllClosedBroadcastRequestsByUserId(UUID id);
 
 	void deleteByUserId(UUID userId);
 }
