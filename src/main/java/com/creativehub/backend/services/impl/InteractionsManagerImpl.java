@@ -50,6 +50,11 @@ public class InteractionsManagerImpl implements InteractionsManager {
 	}
 
 	@Override
+	public void deleteLikesByUserId(UUID userId) {
+		likeRepository.deleteByUserId(userId);
+	}
+
+	@Override
 	public void deleteLikeById(UUID likeId) {
 		likeRepository.findById(likeId).ifPresent(likeRepository::delete);
 	}
@@ -97,5 +102,10 @@ public class InteractionsManagerImpl implements InteractionsManager {
 	@Override
 	public void deleteCommentById(UUID commentId) {
 		commentRepository.findById(commentId).ifPresent(commentRepository::delete);
+	}
+
+	@Override
+	public void deleteCommentsByUserId(UUID userId) {
+		commentRepository.deleteByUserId(userId);
 	}
 }

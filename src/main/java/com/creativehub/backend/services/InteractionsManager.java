@@ -19,6 +19,8 @@ public interface InteractionsManager {
 
 	List<LikeDto> likesOfPublication(UUID userId);
 
+	void deleteLikesByUserId(UUID userId);
+
 	// COMMENTS
 	CommentDto comment(CommentDto comment);
 
@@ -37,4 +39,7 @@ public interface InteractionsManager {
 	void saveLikes(List<LikeDto> likes);
 
 	void saveComments(List<CommentDto> comments);
+
+	void deleteCommentsByUserId(UUID userId);
+
 }
